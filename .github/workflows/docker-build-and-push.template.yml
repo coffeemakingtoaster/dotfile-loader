@@ -7,7 +7,7 @@ on:
         type: string
         
 env:
-  image: ghcr.io/coffeemakingtoaster/dotfile-loader/${{ inputs.context  || 'dotfile-loader' }}
+  image: ghcr.io/coffeemakingtoaster/dotfile-loader/dotfile-loader
 
 jobs:
  build:
