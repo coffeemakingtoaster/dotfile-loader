@@ -1,5 +1,4 @@
-# -- BUILD STAGE --
-FROM golang:1.22.1-alpine3.18 as BUILD 
+FROM golang:1.22.1-alpine3.18 AS build 
 
 WORKDIR /build
 
@@ -8,7 +7,7 @@ COPY . .
 RUN go build -o dotfile-server 
 
 ## -- RUNTIME STAGE --
-FROM alpine:3.18.4 as RUNTIME
+FROM alpine:3.18.4 AS runtime
 
 WORKDIR /app
 
@@ -31,7 +30,7 @@ RUN adduser \
 	"$USER"
 
 # Copy build with permissions
-COPY --from=BUILD --chown=$USER:$USER /build/dotfile-server /app/dotfile-server
+COPY --from=build --chown=$USER:$USER /build/dotfile-server /app/dotfile-server
 
 # Ensure that backend can be run
 RUN chmod +x /app/dotfile-server
