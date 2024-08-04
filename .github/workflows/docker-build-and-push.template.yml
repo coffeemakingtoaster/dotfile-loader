@@ -2,9 +2,6 @@ name: Docker build and push
 
 on:
   workflow_call:
-    inputs:
-      context:
-        type: string
         
 env:
   image: ghcr.io/coffeemakingtoaster/dotfile-loader/dotfile-loader
